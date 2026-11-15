@@ -1,19 +1,21 @@
 package com.example.tutoria01.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
-import com.example.tutoria01.repositories.IProfesorRepository;
 
+import com.example.tutoria01.Models.Profesor;
+import com.example.tutoria01.repositories.IProfesorRepository;
 
 @Service
 public class ProfesorService {
-    IProfesorRepository profesorRepository;
 
-    public Profesor creaProfesor(Profesor profesor){
+    private final IProfesorRepository profesorRepository;
 
-        //
-        profesorRepository.save(profesor);
-        
-        return null;
-        }
+    public ProfesorService(@NonNull IProfesorRepository profesorRepository) {
+        this.profesorRepository = profesorRepository;
     }
+
+    public @NonNull Profesor creaProfesor(@NonNull Profesor profesor) {
+        return profesorRepository.save(profesor);
+    }
+}
