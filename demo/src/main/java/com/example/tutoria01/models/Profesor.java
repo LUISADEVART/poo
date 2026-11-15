@@ -1,19 +1,22 @@
-package com.example.tutoria01.Models;
+package com.example.tutoria01.models;
 
 import java.util.Date;
-import java.sql.Timestamp;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import java.sql.Timestamp;
 
 @Entity
+@Table(name = "profesor")
 public class Profesor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    
     private String nombres;
     private String apellidos;
     private String dni;
@@ -22,8 +25,9 @@ public class Profesor {
     private Timestamp fechaRegistro;
     private Timestamp fechaActualizacion;
 
+    // get and set
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(int id) {
@@ -31,7 +35,7 @@ public class Profesor {
     }
 
     public String getNombres() {
-        return nombres;
+        return this.nombres;
     }
 
     public void setNombres(String nombres) {
@@ -39,7 +43,7 @@ public class Profesor {
     }
 
     public String getApellidos() {
-        return apellidos;
+        return this.apellidos;
     }
 
     public void setApellidos(String apellidos) {
@@ -47,7 +51,7 @@ public class Profesor {
     }
 
     public String getDni() {
-        return dni;
+        return this.dni;
     }
 
     public void setDni(String dni) {
@@ -55,7 +59,7 @@ public class Profesor {
     }
 
     public String getCorreo() {
-        return correo;
+        return this.correo;
     }
 
     public void setCorreo(String correo) {
@@ -63,7 +67,7 @@ public class Profesor {
     }
 
     public Date getFechaNacimiento() {
-        return fechaNacimiento;
+        return this.fechaNacimiento;
     }
 
     public void setFechaNacimiento(Date fechaNacimiento) {
@@ -71,7 +75,7 @@ public class Profesor {
     }
 
     public Timestamp getFechaRegistro() {
-        return fechaRegistro;
+        return this.fechaRegistro;
     }
 
     public void setFechaRegistro(Timestamp fechaRegistro) {
@@ -79,10 +83,13 @@ public class Profesor {
     }
 
     public Timestamp getFechaActualizacion() {
-        return fechaActualizacion;
+        return this.fechaActualizacion;
     }
 
     public void setFechaActualizacion(Timestamp fechaActualizacion) {
         this.fechaActualizacion = fechaActualizacion;
     }
+
+
+    
 }
