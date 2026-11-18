@@ -1,5 +1,7 @@
 package com.example.tutoria01.models;
 
+ 
+
 public class Estudiante {
     private int id;
     private String nombres;
@@ -13,6 +15,7 @@ public class Estudiante {
     public void SetId(int id){
         this.id = id;
     }
+
     public String getNombres(){
     return this.nombres;
 
