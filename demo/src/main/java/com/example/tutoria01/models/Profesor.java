@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 import java.sql.Timestamp;
@@ -90,6 +92,16 @@ public class Profesor {
         this.fechaActualizacion = fechaActualizacion;
     }
 
+    @PrePersist
+    protected void alCrear() {
+        Timestamp ahora = new Timestamp(System.currentTimeMillis());
+        this.fechaRegistro = ahora;
+        this.fechaActualizacion = ahora;
+    }
 
-    
+    @PreUpdate
+    protected void alActualizar() {
+        this.fechaActualizacion = new Timestamp(System.currentTimeMillis());
+    }
+
 }

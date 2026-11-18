@@ -1,46 +1,46 @@
 package com.example.tutoria01.services;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.tutoria01.models.Profesor;
 import com.example.tutoria01.repositories.IProfesorRepository;
 
-@Service 
+@Service
 public class ProfesorService {
-    
-    @Autowired
-    IProfesorRepository profesorRepository;
 
-    public Profesor creaProfesor(Profesor profesor){
-        // INSERT INTO profesor (...) VALUES();
+    private final IProfesorRepository profesorRepository;
+
+    public ProfesorService(IProfesorRepository profesorRepository) {
+        this.profesorRepository = profesorRepository;
+    }
+
+    public Profesor crearProfesor(Profesor profesor) {
         return profesorRepository.save(profesor);
     }
 
-    public ArrayList<Profesor> obtenerProfesores(){
-        // SELECT * FROM profesor WHERE 1 = 1;
-        return (ArrayList<Profesor>) profesorRepository.findAll();
+    public List<Profesor> obtenerProfesores() {
+        return profesorRepository.findAll();
     }
 
-    public Profesor actualizarProfesor(Profesor profesor){
-        // ternarios
-        return existeProfesor(profesor.getId()) ? profesorRepository.save(profesor) : null;
+    public Profesor actualizarProfesor(Profesor profesor) {
+        if (!existeProfesor(profesor.getId())) {
+            return null;
+        }
+        return profesorRepository.save(profesor);
     }
 
-    // metodo para validar si existe el profesor
-    private boolean existeProfesor(int id){
-
-        if(profesorRepository.findById(id) != null){
-            return true;
-        }else{
+    public boolean eliminarProfesor(int id) {
+        if (!existeProfesor(id)) {
             return false;
         }
-
+        profesorRepository.deleteById(id);
+        return true;
     }
 
-    // metodo eliminar
-
+    private boolean existeProfesor(int id) {
+        return profesorRepository.existsById(id);
+    }
 
 }
